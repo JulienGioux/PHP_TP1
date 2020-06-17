@@ -28,11 +28,16 @@
     if (isset($_POST['inputDate']) && $_POST['inputDate'] != null ) {
         $month = date_parse($_POST['inputDate'])['month'];
         $year = date_parse($_POST['inputDate'])['year'];
-        $nbDaysInMonths = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-        $firstDay = new DateTime($year . '-' . $month . '-' . 01);
-        $wdayFirstDay = $firstDay->format('N');
         $selectDate = new DateTime($_POST['inputDate']);
+    } else {
+        $selectDate = new DateTime();
+        $month = $selectDate -> format('m');
+        $year = $selectDate -> format('Y');
+        var_dump($month, $year);
     }
+    $nbDaysInMonths = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    $firstDay = new DateTime($year . '-' . $month . '-' . 01);
+    $wdayFirstDay = $firstDay->format('N');
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +62,8 @@
                 <input type="text" class="datepicker" name="inputDate" id="inputDate">
                 <input type="submit" value="Aller à">
             </form>
-            <p><?= fraStrDate($selectDate) ?></p>
+            <p><?= fraStrDate($selectDate)?></p>
+
             <table class="centered">
                 <thead>
                     <tr>
@@ -71,7 +77,7 @@
                     </tr>
                 </thead>
                 <tbody id="tbcalendar">
-                    <?php (isset($_POST['inputDate']) && $_POST['inputDate'] != null) ? drawCalendar($nbDaysInMonths,$wdayFirstDay) : '' ?>
+                    <?php drawCalendar($nbDaysInMonths,$wdayFirstDay) ?>
 
                 </tbody>
 
