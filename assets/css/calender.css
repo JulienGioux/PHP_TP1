@@ -1,0 +1,21 @@
+#calendarTable {
+    border-spacing: unset;
+    border-collapse: collapse;
+}
+.calendarDay:hover {
+    background-color: cornflowerblue;
+}
+.calendarDaysHead {
+    background-color: midnightblue;
+    color: whitesmoke;
+    width: 20px;
+}
+.calendarDaysHead > th {
+    border-style: solid;
+    border-width: thin;
+    border-color: whitesmoke;
+    
+}
+.calendarToday {
+    background-color: lightgreen;
+}
